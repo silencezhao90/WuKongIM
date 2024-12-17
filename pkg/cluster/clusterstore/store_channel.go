@@ -139,7 +139,8 @@ func (s *Store) ExistDenylist(channelId string, channelType uint8, uid string) (
 }
 
 func (s *Store) RemoveAllDenylist(channelId string, channelType uint8) error {
-	cmd := NewCMD(CMDRemoveAllDenylist, nil)
+	cmdData := EncodeChannel(channelId, channelType)
+	cmd := NewCMD(CMDRemoveAllDenylist, cmdData)
 	cmdData, err := cmd.Marshal()
 	if err != nil {
 		return err
